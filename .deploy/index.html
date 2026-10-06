@@ -340,14 +340,20 @@
     <!-- Preload WASM compiler for faster init -->
     <link rel="preload" href="./wasm_exec.js" as="script" />
     <link rel="preload" href="./signal-compiler.wasm" as="fetch" type="application/wasm" crossorigin />
-    <script type="module" crossorigin src="./assets/index-CY9B-UO1.js"></script>
+    <!-- Current dashboard assets -->
+    <script type="module" crossorigin src="./assets/index-Dj_I6SRE.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-hePW80VL.js">
     <link rel="modulepreload" crossorigin href="./assets/react-vendor-DpreT9ib.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-DxOjpmt6.css">
+    <!-- Previous dashboard assets (fallback) -->
+    <script type="module" crossorigin src="./assets/index-CY9B-UO1.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DF8Sko7d.css">
 
     <!-- Eagerly load route CSS to prevent preload failures through proxy -->
+    <link rel="stylesheet" crossorigin href="./assets/DashboardPage-DKTar8kS.css">
     <link rel="stylesheet" crossorigin href="./assets/DashboardPage-D4BdufaI.css">
     <link rel="stylesheet" crossorigin href="./assets/PlaygroundPage-o9wKuzn2.css">
+    <link rel="stylesheet" crossorigin href="./assets/BuilderPage-CC2KzbXJ.css">
     <link rel="stylesheet" crossorigin href="./assets/BuilderPage-DUadnpql.css">
     <link rel="stylesheet" crossorigin href="./assets/StatusPage-B-int5ju.css">
   </head>
