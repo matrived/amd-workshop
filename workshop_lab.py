@@ -85,7 +85,7 @@ class WorkshopLab:
             "ROUTINE_PROVIDER_MODEL", "gemma-4-12b"
         )
         self.reasoning_provider_model = os.getenv(
-            "REASONING_PROVIDER_MODEL", "qwen3.8-27b"
+            "REASONING_PROVIDER_MODEL", "qwen3.6-35b"
         )
         self.virtual_model = "vllm-sr/auto"
 

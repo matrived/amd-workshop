@@ -18,7 +18,7 @@ providers:
           weight: 1
     - name: reasoning-model
       api_format: openai
-      provider_model_id: qwen3.8-27b
+      provider_model_id: qwen3.6-35b
       backend_refs:
         - name: reasoning-backend
           endpoint: 127.0.0.1:8001

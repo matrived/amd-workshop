@@ -80,11 +80,10 @@ COPY --from=dashboard /app/dashboard-backend /opt/vllm-sr/dashboard-backend
 COPY --from=dashboard /app/frontend /opt/vllm-sr/frontend
 COPY --from=envoy /usr/local/bin/envoy /usr/local/bin/envoy
 
-# Radeon Cloud: proxy-aware dashboard frontend for jupyter-server-proxy
-# index.html lives in .deploy/ so it is hidden from notebook users.
-# It includes the __vsr_subpath_shim marker so start-platform.sh skips
-# its own Instinct-style patching.
-COPY .deploy/index.html /opt/vllm-sr/frontend/index.html
+# Radeon Cloud: dashboard frontend is patched at startup by patch-dashboard.py
+# which injects the proxy shim into whatever index.html the dashboard image ships.
+# No static index.html copy needed — asset hashes are discovered dynamically.
+COPY .deploy/bin/patch-dashboard.py /opt/workshop/bin/patch-dashboard.py
 COPY .deploy/dashboard_auth_proxy.py /opt/workshop/bin/dashboard_auth_proxy.py
 COPY .deploy/openai_proxy.py /opt/workshop/bin/openai_proxy.py
 
@@ -137,6 +136,17 @@ ENV SHELL="/bin/bash" \
     REASONING_PROVIDER_MODEL="qwen3.8-27b" \
     VLLM_ROCM_USE_AITER="1" \
     VLLM_ROCM_USE_AITER_FUSION_SHARED_EXPERTS="1"
+
+# Pre-download models into /models so pods start without HF downloads
+RUN HF_HUB_DISABLE_TELEMETRY=1 \
+    huggingface-cli download google/gemma-4-12B-it-qat-q4_0-gguf \
+      --local-dir /models/gemma4 \
+    && huggingface-cli download Aldaris/Qwen3-8B-Q4_K_M-GGUF \
+      --local-dir /models/qwen3 \
+    && huggingface-cli download vllm-sr/Vela-1.0-Encoder-307M-Embedding \
+      --revision 1e57cebf5a7b7fec6e6973f05bbca97c5cca4436 \
+      --local-dir /models/Vela-1.0-Encoder-307M-Embedding \
+      --exclude "*.onnx" --exclude "onnx/*"
 
 # Build llama.cpp with ROCm/HIP support for llama-server
 # AMDGPU_TARGETS must match the GPU: gfx1100 = Radeon PRO W7900 (RDNA3)
