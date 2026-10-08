@@ -162,7 +162,7 @@ Terminal 2:
 vllm serve Qwen/Qwen3.8-27B-FP8 \
   --host 0.0.0.0 \
   --port 8001 \
-  --served-model-name qwen3.8-27b \
+  --served-model-name qwen3.6-35b \
   --gpu-memory-utilization 0.47 \
   --max-model-len 32768 \
   --max-num-seqs 16 \

@@ -199,7 +199,7 @@ Expected readiness:
 
 ```text
 routine    ['gemma-4-12b']
-reasoning  ['qwen3.8-27b']
+reasoning  ['qwen3.6-35b']
 ```
 
 Run the first notebook code cell after both model servers are ready:

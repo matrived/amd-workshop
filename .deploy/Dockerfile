@@ -133,7 +133,7 @@ ENV SHELL="/bin/bash" \
     VLLM_SR_SOURCE_CONFIG_PATH="/workspace/generated-config/router.yaml" \
     VLLM_SR_RUNTIME_CONFIG_PATH="/workspace/generated-config/router.yaml" \
     ROUTINE_PROVIDER_MODEL="gemma-4-12b" \
-    REASONING_PROVIDER_MODEL="qwen3.8-27b" \
+    REASONING_PROVIDER_MODEL="qwen3.6-35b" \
     VLLM_ROCM_USE_AITER="1" \
     VLLM_ROCM_USE_AITER_FUSION_SHARED_EXPERTS="1"
 
